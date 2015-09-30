@@ -50,3 +50,15 @@ function Thermostat() {
       this.powerSaver = !this.powerSaver;
     };
   };
+
+  Thermostat.prototype.energyUsage = function() {
+    if(this.temp < 18){
+      return 'green';
+    }
+    else if(this.temp > 25){
+      return 'red';
+    }
+    else {
+      return 'yellow';
+    };
+  };

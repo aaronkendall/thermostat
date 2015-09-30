@@ -36,6 +36,21 @@ describe("Thermostat", function() {
     expect(thermostat.temp).toEqual(10);
   });
 
+  it("should return green when temperature is 18 or less", function() {
+    thermostat.tempChange(17);
+    expect(thermostat.energyUsage()).toEqual('green');
+  });
+
+  it("should return red when temperature is greater than 25", function() {
+    thermostat.tempChange(26);
+    expect(thermostat.energyUsage()).toEqual('red');
+  });
+
+  it("should return yellow when temperature is between 18 and 25", function() {
+    thermostat.tempChange(23);
+    expect(thermostat.energyUsage()).toEqual('yellow');
+  });
+
   describe("Power saving mode", function() {
 
     it("starts with power saving mode on", function() {
