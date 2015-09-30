@@ -10,60 +10,67 @@ describe("Thermostat", function() {
   });
 
   it("should be possible to increase temperature by 1 degree", function() {
-    thermostat.temp_up();
+    thermostat.tempUp();
     expect(thermostat.temp).toEqual(21);
   });
 
   it("should be possible to decrease temperature by 1 degree", function() {
-    thermostat.temp_down();
+    thermostat.tempDown();
     expect(thermostat.temp).toEqual(19);
   });
 
   it("should reset to 20 degrees when the reset method is called", function() {
-    thermostat.temp_up();
-    thermostat.temp_reset();
+    thermostat.tempUp();
+    thermostat.tempReset();
     expect(thermostat.temp).toEqual(20);
   });
 
   it("should not let temperature go below 10 degrees", function() {
-    thermostat.temp_change(10);
-    thermostat.temp_down();
+    thermostat.tempChange(10);
+    thermostat.tempDown();
     expect(thermostat.temp).toEqual(10);
   });
 
   it("should change temp", function() {
-    thermostat.temp_change(10);
+    thermostat.tempChange(10);
     expect(thermostat.temp).toEqual(10);
   });
 
   describe("Power saving mode", function() {
 
     it("starts with power saving mode on", function() {
-      expect(thermostat.power_saver).toEqual(true);
+      expect(thermostat.powerSaver).toEqual(true);
     });
 
     it("can be turned off", function() {
-      thermostat.power_saver_off();
-      expect(thermostat.power_saver).toEqual(false);
+      thermostat.switchPowerSave();
+      expect(thermostat.powerSaver).toEqual(false);
     });
 
     it("can be turned back on", function() {
-      thermostat.power_saver_off();
-      thermostat.power_saver_on();
-      expect(thermostat.power_saver).toEqual(true);
+      thermostat.switchPowerSave();
+      thermostat.switchPowerSave();
+      expect(thermostat.powerSaver).toEqual(true);
     });
 
     it("with power saver mode on, max temperature is 25 degrees", function() {
-      thermostat.temp_change(25);
-      thermostat.temp_up();
+      thermostat.tempChange(25);
+      thermostat.tempUp();
       expect(thermostat.temp).toEqual(25);
     });
 
     it("with power saver mode off, max temperature is 32 degrees", function() {
-      thermostat.power_saver_off();
-      thermostat.temp_change(32);
-      thermostat.temp_up();
+      thermostat.switchPowerSave();
+      thermostat.tempChange(32);
+      thermostat.tempUp();
       expect(thermostat.temp).toEqual(32);
+    });
+
+    it("resets temperature to 25 if power saving mode is turned on and the temperature is higher", function() {
+      thermostat.switchPowerSave();
+      thermostat.tempChange(32);
+      thermostat.switchPowerSave();
+      expect(thermostat.temp).toEqual(25);
     });
   });
 });
