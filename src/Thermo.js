@@ -62,3 +62,12 @@ function Thermostat() {
       return 'yellow';
     };
   };
+
+  Thermostat.prototype.powerSaverAlert = function() {
+    if(this.powerSaver == true){
+      return '<div class="alert alert-success" role="alert">Power Saving Mode is <strong>ON!</strong></div>'
+    }
+    else{
+      return '<div class="alert alert-danger" role="alert">Power Saving Mode is <strong>OFF!</strong></div>'
+    };
+  };

@@ -6,16 +6,49 @@
 
   <script src="src/Thermo.js"></script>
   <script src="jquery.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
 
 <body>
-  <h1><span id="temperature"></span>&deg;C</h1>
-  <button id="tempUp">Increase Temperature</button>
-  <button id="tempDown">Decrease Temperature</button>
-  <button id="switchPowerSave">Toggle Power Saving Mode</button>
-  <button id="reset">Reset</button>
+  <div class="col-md-offset-4 col-md-4 text-center">
+    <div id="powerSaverAlert"></div>
+  </div>
+  <div class="container">
+    <div class="col-md-12 text-center">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-1">
+          <button class="btn btn-primary" id="tempUp">+</button>
+        </div>
+        <div class="col-md-4">
+          <h1 id="colour"><span id="temperature"></span>&deg;C</h1>
+        </div>
+        <div class="col-md-1">
+        <button class="btn btn-primary" id="tempDown">-</button>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-success" id="switchPowerSave">Toggle Power Saving Mode</button>
+        <button class="btn btn-danger" id="reset">Reset</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-offset-3 col-md-6 panel panel-default text-center">
+    <div id="weather"></div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="form-group">
+          <input type="text" id="city" placeholder="Enter a city">
+          <button class="btn btn-default" id="citysubmit" value="submit">Submit</button>
+          <h4>Or</h4>
+          <button id="js-geolocation" class="btn btn-warning">Use Your Location</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="thermoapp.js"></script>
+  <script src="weather.js"></script>
 </body>
 </html>

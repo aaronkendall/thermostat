@@ -4,7 +4,8 @@ $(function(){
 
     var display = function() {
       $("#temperature").text(thermostat.temp);
-      $("#temperature").css("color", thermostat.energyUsage());
+      $("#colour").css("color", thermostat.energyUsage());
+      $("#powerSaverAlert").html(thermostat.powerSaverAlert());
     };
 
     display();
